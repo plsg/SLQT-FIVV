@@ -59,13 +59,60 @@ body:before {
   .website-top-shadow;
 }
 
-//  custom container wider than main content for the logo and clouds
-.clouds-logo {
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
+
+header.logo-container {
+
+  /* Small devices (tablets, 768px and up) */
+  @media (min-width: @screen-sm-min) {
+    margin-bottom: 86px;
+  }
+  
+  /* Medium devices (desktops, 992px and up) */
+  @media (min-width: @screen-md-min) { 
+    margin-bottom: 112px;
+  }
+
+  /* Large devices (large desktops, 1200px and up) */
+  @media (min-width: @screen-lg-min) { 
+    margin-bottom: 135px;
+  }
+
+  img.logo-small {
+    max-width: 50%;
+    min-width: 250px;
+    margin: auto;
+    margin-bottom: -5%;
+  }
+
+  img.clouds, img.logo-big {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: -1;
+
+    /* Small devices (tablets, 768px and up) */
+    @media (min-width: @screen-sm-min) {
+      margin-left: -490px;
+      width: 979px;
+    }
+    
+    /* Medium devices (desktops, 992px and up) */
+    @media (min-width: @screen-md-min) { 
+      margin-left: -646px;
+      width: 1292px;
+    }
+
+    /* Large devices (large desktops, 1200px and up) */
+    @media (min-width: @screen-lg-min) { 
+      margin-left: -788px;
+      width: 1577px;
+    }
+  }
 }
+
+
+
+
 // ================ Typography ================
   // Add style for overlock display font (eg. italic)
   // go to custom-variables.less line 87
@@ -106,9 +153,11 @@ body:before {
   }
 // ----------- /end wrapper --------------
 
+
 // =============== Navbar custom settings ==================================
 // other navbar settings can be found in custom-variables.less line 270
-  // bg mixins
+
+  // background mixins
   .nav-inner-shadow (@x: 0, @y: 0, @blur: 20px, @spread: 0, @alpha: 0.3) {
     -webkit-box-shadow: inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
     -moz-box-shadow:    inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
@@ -143,8 +192,8 @@ body:before {
     filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
   }
 
-  // more navbar settings @custom-variables.less @line 90
-
+  // these navbar variables can be found in @custom-variables.less @line 90
+  // typography of navbar **********
   .dropdown-menu {
     font-family:      @navbar-font-family;
     font-style:       @navbar-font-style;
@@ -160,23 +209,42 @@ body:before {
     font-size:        @navbar-font-size;
     text-transform:   @navbar-text-transform;
 
-    // custom lighting effect on navbar background
-    .nav-bg-gradient;
-    .nav-inner-shadow;
+    // apply mixin from above for navbar background
+    @media (min-width: @screen-sm-min) {
+      .nav-bg-gradient;
+      .nav-inner-shadow;
+    }
 
     .navbar-nav {
       > li > a {
 
         // add padding between links @custom-variable.less @line-96
-        padding-left:   @navbar-manual-spacing;
-        padding-right:  @navbar-manual-spacing;
+          /* Small devices (tablets, 768px and up) */
+          @media (min-width: @screen-sm-min) {
+          padding-left:   @navbar-manual-spacing - .7;
+          padding-right:  @navbar-manual-spacing - .7;
+          }
+          
+          /* Medium devices (desktops, 992px and up) */
+          @media (min-width: @screen-md-min) { 
+          padding-left:   @navbar-manual-spacing; //100%
+          padding-right:  @navbar-manual-spacing; //100%
+          }
+
+          /* Large devices (large desktops, 1200px and up) */
+          @media (min-width: @screen-lg-min) { 
+          padding-left:   @navbar-manual-spacing + .5;
+          padding-right:  @navbar-manual-spacing + .5;
+          }
 
         &:hover,
         &:focus {
 
           // custom lighting effect on hover
-          .nav-radial;
-          .nav-inner-shadow-hover;
+          @media (min-width: @screen-sm-min) {
+            .nav-radial;
+            .nav-inner-shadow-hover;
+          }
 
         }
         &:active {
@@ -418,36 +486,33 @@ body:before {
 
 
 
-/*
 // -----------------------------------
 // reference cheatsheet for LESS functions
 // -----------------------------------
-  saturate(@color, 10%);                  
-  // return a color 10% points *more* saturated
-  desaturate(@color, 10%);                
-  // return a color 10% points *less* saturated
-  lighten(@color, 10%);                   
-  // return a color 10% points *lighter*
-  darken(@color, 10%);                   
-  // return a color 10% points *darker*
-  fadein(@color, 10%);                   
-  // return a color 10% points *less* transparent
-  fadeout(@color, 10%);                  
-  // return a color 10% points *more* transparent
-  fade(@color, 50%);                     
-  // return @color with 50% transparency
-  spin(@color, 10);                      
-  // return a color with a 10 degree larger in hue
-  mix(@color1, @color2, [@weight: 50%]); 
-  // return a mix of @color1 and @color2
-  tint(@color, 10%);                     
-  // return a color mixed 10% with white
-  shade(@color, 10%);                    
-  // return a color mixed 10% with black
-  greyscale(@color);                     
-  // returns a grey, 100% desaturated color
-  contrast(@color1, [@darkcolor: black], [@lightcolor: white], [@threshold: 43%]);  
-  // return @darkcolor if @color1 is > 43% luma
-  // otherwise return @lightcolor, see notes
-
-*/
+  // saturate(@color, 10%);                  
+    // return a color 10% points *more* saturated
+  // desaturate(@color, 10%);                
+    // return a color 10% points *less* saturated
+  // lighten(@color, 10%);                   
+    // return a color 10% points *lighter*
+  //darken(@color, 10%);                   
+    // return a color 10% points *darker*
+  //fadein(@color, 10%);                   
+    // return a color 10% points *less* transparent
+  //fadeout(@color, 10%);                  
+    // return a color 10% points *more* transparent
+  //fade(@color, 50%);                     
+    // return @color with 50% transparency
+  //spin(@color, 10);                      
+    // return a color with a 10 degree larger in hue
+  //mix(@color1, @color2, [@weight: 50%]); 
+    // return a mix of @color1 and @color2
+  //tint(@color, 10%);                     
+    // return a color mixed 10% with white
+  //shade(@color, 10%);                    
+    // return a color mixed 10% with black
+  //greyscale(@color);                     
+    // returns a grey, 100% desaturated color
+  //contrast(@color1, [@darkcolor: black], [@lightcolor: white], [@threshold: 43%]);  
+  //  // return @darkcolor if @color1 is > 43% luma
+    // otherwise return @lightcolor, see notes
