@@ -301,7 +301,7 @@
 // Navbar links
 @navbar-default-link-color:                tint(@nav-color, 60%);
 @navbar-default-link-hover-color:          tint(@nav-color, 90%);
-@navbar-default-link-hover-bg:             transparent;
+@navbar-default-link-hover-bg:             darken(@navbar-default-bg, 5%);
 @navbar-default-link-active-color:         tint(@nav-color, 75%);
 @navbar-default-link-active-bg:            darken(@navbar-default-bg, 4.5%);
 @navbar-default-link-disabled-color:       #ccc;
@@ -313,9 +313,9 @@
 @navbar-default-brand-hover-bg:            transparent;
 
 // Navbar toggle
-@navbar-default-toggle-hover-bg:           #ddd;
-@navbar-default-toggle-icon-bar-bg:        #ccc;
-@navbar-default-toggle-border-color:       #ddd;
+@navbar-default-toggle-hover-bg:           @navbar-default-link-hover-bg;
+@navbar-default-toggle-icon-bar-bg:        transparent;
+@navbar-default-toggle-border-color:       transparent;
 
 
 // Inverted navbar

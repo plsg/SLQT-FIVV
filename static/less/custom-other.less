@@ -158,42 +158,41 @@ header.logo-container {
 // other navbar settings can be found in custom-variables.less line 270
 
   // background mixins
-  .nav-inner-shadow (@x: 0, @y: 0, @blur: 20px, @spread: 0, @alpha: 0.3) {
-    -webkit-box-shadow: inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
-    -moz-box-shadow:    inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
-    box-shadow:         inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
-  }
-  .nav-inner-shadow-hover (@x: 0, @y: 0, @blur: 20px, @spread: 0, @nav-inner-shadow-color: fade(lighten(@nav-color, 50%), 30%)) {
-    -webkit-box-shadow: inset @x @y @blur @spread @nav-inner-shadow-color;
-    -moz-box-shadow:    inset @x @y @blur @spread @nav-inner-shadow-color;
-    box-shadow:         inset @x @y @blur @spread @nav-inner-shadow-color;
-  }
-  .nav-inner-shadow-active (@x: 0, @y: 0, @blur: 20px, @spread: 0, @nav-inner-shadow-color: fade(darken(@nav-color, 50%), 15%)) {
-    -webkit-box-shadow: inset @x @y @blur @spread @nav-inner-shadow-color;
-    -moz-box-shadow:    inset @x @y @blur @spread @nav-inner-shadow-color;
-    box-shadow:         inset @x @y @blur @spread @nav-inner-shadow-color;
-  }
-  .nav-radial(@inner-color: lighten(@nav-color, 5%); @outer-color: fade(shade(@nav-color, 5%), 60%)) {
-    background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(@inner-color), to(@outer-color));
-    background-image: -webkit-radial-gradient(circle, @inner-color, @outer-color);
-    background-image: -moz-radial-gradient(circle, @inner-color, @outer-color);
-    background-image: radial-gradient(circle, @inner-color, @outer-color);
-    background-repeat: no-repeat;
-  }
-  .nav-bg-gradient  (@start-color: lighten(@nav-color, 15%); 
-                    @mid-color1: @nav-color; @color-stop1: 55%; 
-                    @mid-color2: shade(@nav-color, 20%); @color-stop2: 57%; 
-                    @end-color: shade(@nav-color, 10%)) {
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@start-color), color-stop(@color-stop1, @mid-color1), color-stop(@color-stop2, @mid-color2), to(@end-color));
-    background-image: -webkit-linear-gradient(@start-color, @mid-color1 @color-stop1, @mid-color2 @color-stop2, @end-color);
-    background-image: -moz-linear-gradient(top, @start-color, @mid-color1 @color-stop1, @mid-color2 @color-stop2, @end-color);
-    background-image: linear-gradient(@start-color, @mid-color1 @color-stop1, @mid-color2 @color-stop2, @end-color);
-    background-repeat: no-repeat;
-    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
-  }
+    .nav-inner-shadow (@x: 0, @y: 0, @blur: 20px, @spread: 0, @alpha: 0.3) {
+      -webkit-box-shadow: inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
+      -moz-box-shadow:    inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
+      box-shadow:         inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
+    }
+    .nav-inner-shadow-hover (@x: 0, @y: 0, @blur: 20px, @spread: 0, @nav-inner-shadow-color: fade(lighten(@nav-color, 50%), 30%)) {
+      -webkit-box-shadow: inset @x @y @blur @spread @nav-inner-shadow-color;
+      -moz-box-shadow:    inset @x @y @blur @spread @nav-inner-shadow-color;
+      box-shadow:         inset @x @y @blur @spread @nav-inner-shadow-color;
+    }
+    .nav-inner-shadow-active (@x: 0, @y: 0, @blur: 20px, @spread: 0, @nav-inner-shadow-color: fade(darken(@nav-color, 50%), 15%)) {
+      -webkit-box-shadow: inset @x @y @blur @spread @nav-inner-shadow-color;
+      -moz-box-shadow:    inset @x @y @blur @spread @nav-inner-shadow-color;
+      box-shadow:         inset @x @y @blur @spread @nav-inner-shadow-color;
+    }
+    .nav-radial(@inner-color: lighten(@nav-color, 5%); @outer-color: fade(shade(@nav-color, 5%), 60%)) {
+      background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(@inner-color), to(@outer-color));
+      background-image: -webkit-radial-gradient(circle, @inner-color, @outer-color);
+      background-image: -moz-radial-gradient(circle, @inner-color, @outer-color);
+      background-image: radial-gradient(circle, @inner-color, @outer-color);
+      background-repeat: no-repeat;
+    }
+    .nav-bg-gradient  (@start-color: lighten(@nav-color, 15%); 
+                      @mid-color1: @nav-color; @color-stop1: 55%; 
+                      @mid-color2: shade(@nav-color, 20%); @color-stop2: 57%; 
+                      @end-color: shade(@nav-color, 10%)) {
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@start-color), color-stop(@color-stop1, @mid-color1), color-stop(@color-stop2, @mid-color2), to(@end-color));
+      background-image: -webkit-linear-gradient(@start-color, @mid-color1 @color-stop1, @mid-color2 @color-stop2, @end-color);
+      background-image: -moz-linear-gradient(top, @start-color, @mid-color1 @color-stop1, @mid-color2 @color-stop2, @end-color);
+      background-image: linear-gradient(@start-color, @mid-color1 @color-stop1, @mid-color2 @color-stop2, @end-color);
+      background-repeat: no-repeat;
+      filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+    }
 
-  // these navbar variables can be found in @custom-variables.less @line 90
-  // typography of navbar **********
+  // navbar variables are in @custom-variables.less @line 90
   .dropdown-menu {
     font-family:      @navbar-font-family;
     font-style:       @navbar-font-style;
@@ -208,6 +207,24 @@ header.logo-container {
     font-weight:      @navbar-font-weight;
     font-size:        @navbar-font-size;
     text-transform:   @navbar-text-transform;
+
+    // colapsed menu glyph button
+    .navbar-toggle {
+      color: @navbar-default-link-color;
+      margin: auto;
+      width: 100%;
+      height: 30px;
+      border: none;
+
+      &:hover, 
+      &:focus {
+        // background-color:  darken(@navbar-default-link-hover-bg, 5%);
+        color: @navbar-default-link-hover-color;
+      }
+      &:active {
+        color: @navbar-default-link-active-color;
+      }
+    }
 
     // apply mixin from above for navbar background
     @media (min-width: @screen-sm-min) {
@@ -239,6 +256,8 @@ header.logo-container {
 
         &:hover,
         &:focus {
+          // background
+          // background-color: orange;
 
           // custom lighting effect on hover
           @media (min-width: @screen-sm-min) {
@@ -248,9 +267,8 @@ header.logo-container {
 
         }
         &:active {
-        // custom lighting effect on active
-        .nav-inner-shadow-active;
-          
+          // custom lighting effect on active
+          .nav-inner-shadow-active;
         }
       }
       > .active > a {
@@ -261,7 +279,10 @@ header.logo-container {
         &:focus {
 
           // custom lighting effect on focus
-          .nav-radial;
+          @media (min-width: @screen-sm-min) {
+            .nav-radial;
+          }
+          background: darken(@navbar-default-link-hover-bg, 5%);
 
         }
       }
@@ -313,22 +334,6 @@ header.logo-container {
   } 
 
   div.banner-label {
-    h3, h4 {
-      font-weight: normal;
-      font-family: @font-family-display;
-      font-style: italic;
-    }
-    .category {
-      color: @gray-lighter;
-      font-size: 1.25em;
-      letter-spacing: .15em;
-    }
-    .banner-name {
-      color: @gray-dark;
-      font-size: .9em;
-      text-transform: uppercase;
-      letter-spacing: 1em;
-    }
 
     text-shadow:   0px 1px 0px tint(@gris, 40%), 
                   0px -1px 0px shade(@gris, 70%);
@@ -339,20 +344,39 @@ header.logo-container {
     border-right: none;
     .banner-filter-drop-shadow;
     
+    // arrow shape
+    // ===========
+    // &:before {
+    //   z-index: 0;
+    //   content:"";
+    //   position: absolute;
+    //   left: 100%;
+    //   top: 2.5%;
+    //   width:0;
+    //   height: 95%;
+    //   border-top:     3.3em solid transparent;
+    //   border-left:    .8em   solid shade(@gris, 0%);
+    //   border-bottom:  3.3em solid transparent;
+    // }
 
-    &:before {
-      z-index: 0;
-      content:"";
-      position: absolute;
-      left: 100%;
-      top: 2.5%;
-      width:0;
-      height: 95%;
-      border-top:     3.3em solid transparent;
-      border-left:    .8em   solid shade(@gris, 0%);
-      border-bottom:  3.3em solid transparent;
+    h3, h4 {
+      font-weight: normal;
+      font-family: @font-family-display;
+      font-style: italic;
     }
+    .category {
+      color: @gray-lighter;
+      font-size: 1.25em;
+      letter-spacing: .15em;
+    }
+    // .banner-name {
+    //   color: @gray-dark;
+    //   font-size: .9em;
+    //   text-transform: uppercase;
+    //   letter-spacing: 1em;
+    // }
   }
+
   .banner-article {
     padding-left: 20px;
     padding-top: 15px;
