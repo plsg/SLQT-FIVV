@@ -23,7 +23,7 @@
 // test colors
   .color-samples {display: none;}
   .color-tests {display:inline-block;}
-  .test-shape { height: 50px; width:12%; margin: 10px; }
+  .test-shape { height: 50px; width:12%; margin: 10px; padding-top: 5px; color: white; text-align: center; }
 
   .color-tests { .test-shape }
        .color-Nav { background: @rouge }
@@ -33,6 +33,38 @@
        .color-D { background: @bleu-logo }
        .color-E { background: @vert }
        .color-F { background: @marron }
+
+      // -----------------------------------
+      // reference cheatsheet for LESS functions
+      // -----------------------------------
+      // saturate(@color, 10%);                  
+        // return a color 10% points *more* saturated
+      // desaturate(@color, 10%);                
+        // return a color 10% points *less* saturated
+      // lighten(@color, 10%);                   
+        // return a color 10% points *lighter*
+      //darken(@color, 10%);                   
+        // return a color 10% points *darker*
+      //fadein(@color, 10%);                   
+        // return a color 10% points *less* transparent
+      //fadeout(@color, 10%);                  
+        // return a color 10% points *more* transparent
+      //fade(@color, 50%);                     
+        // return @color with 50% transparency *note* 0% is invisible and 100% is opaque
+      //spin(@color, 10);                      
+        // return a color with a 10 degree larger in hue
+      //mix(@color1, @color2, [@weight: 50%]); 
+        // return a mix of @color1 and @color2
+      //tint(@color, 10%);                     
+        // return a color mixed 10% with white
+      //shade(@color, 10%);                    
+        // return a color mixed 10% with black
+      //greyscale(@color);                     
+        // returns a grey, 100% desaturated color
+      //contrast(@color1, [@darkcolor: black], [@lightcolor: white], [@threshold: 43%]);  
+      //  // return @darkcolor if @color1 is > 43% luma
+        // otherwise return @lightcolor, see notes
+
 
 
 // =========== background graphics =====================
@@ -478,97 +510,10 @@
       }
     }
   }
-
-  
 // -------------- /end showcase --------------------
 
-// resize images to fit column width
-// temporary styling WIP
 
-      // List group
-      // this set will overide
-      // line 521 @custom-variables.less
-      @list-group-bg:               tint(@ciel, 30%);
-      @list-group-border:           #ddd;
-      @list-group-border-radius:    @border-radius-base;
-
-      @list-group-hover-bg:         tint(@list-group-bg, 30%);
-      @list-group-active-color:     @component-active-color;
-      @list-group-active-bg:        @component-active-bg;
-      @list-group-active-border:    @list-group-active-bg;
-
-      @list-group-link-color:          #555;
-      @list-group-link-heading-color:  #333;
-      // -------------------------
-
-
-  #maps {
-    .make-sm-column(6);
-  }
-
-  #forum {
-    .make-sm-column(3);
-
-    h1 {
-      .border-top-radius(7px);
-
-      background-color: fade(@nav-color, 50%);
-      font-family: @font-family-display;
-      font-style: italic;
-      font-size: 1em;
-      color: @ciel;
-      text-align: center;
-      padding: 5px;
-      margin-bottom: 0;
-    }
-
-    a.list-group-item {
-      border-bottom: 1px solid @gris;
-
-      .avatar {
-        position: relative;
-        float: left;
-        width: 100%;
-        img {
-          // .img-responsive();
-          width: 55px;
-          float: left;
-          margin-right: 10px;
-        }
-        .author {
-          position: absolute;
-          top: 50%;
-          margin-top: -1em;
-          font-weight: bold;
-          font-size: .8em;
-          color: @nav-color;
-        }
-      }
-      .forum-post {
-
-        .forum, .topic {
-          font-family: @font-family-display;
-          font-weight: bold;
-          font-style: italic;
-          color: @nav-color;
-        }
-        .glyphicon {
-          color: lighten(@nav-color, 40%)
-        }
-      }
-    }
-
-  }
-
-  // #forum {
-  //   img {
-  //     width: 55px;
-  //     float: left;
-  //     padding-right: 10px;
-  //   }
-  // }
-
-// ================= news ============================
+// ================= news *deprecated* ========================
   // resize images to fit column width
     #news {
       display:none;
@@ -663,6 +608,186 @@
     }
 // --------------- /end agenda --------------------------
 
+// =============== map ================
+  #maps {
+    .make-sm-column(6);
+    article.map img {
+      width: 100%;
+      .img-responsive;
+    }
+  }
+// ------------ /end map ----------------
+
+// ========== forum ==============
+  #forum {
+    .make-sm-column(3);
+
+    h1 {
+      .border-top-radius(7px);
+
+      background-color: fade(@nav-color, 50%);
+      font-family: @font-family-display;
+      font-style: italic;
+      font-size: 1em;
+      color: @ciel;
+      text-align: center;
+      padding: 5px;
+      margin-bottom: 0;
+    }
+
+    a.list-group-item {
+      background-color: tint(@ciel, 50%);
+      &:nth-child(2n) {
+        background-color: tint(@ciel, 30%);
+      }
+      &:hover {
+        background-color: tint(@gris, 85%);
+      }
+      
+      border-bottom: 1px solid @gris;
+      overflow: hidden;
+
+      .avatar {
+        position: relative;
+        float: left;
+        width: 100%;
+        img {
+          width: 55px;
+          float: left;
+          margin-right: 10px;
+        }
+        .author {
+          position: absolute;
+          top: 50%;
+          margin-top: -1em;
+          font-weight: bold;
+          font-size: .8em;
+          color: @nav-color;
+        }
+      }
+      .forum-post {
+
+        .forum, .topic {
+          font-family: @font-family-display;
+          font-weight: bold;
+          font-style: italic;
+          color: @nav-color;
+        }
+      }
+    }
+  }
+// ----------- /end forum ---------------
+
+// ============= gallery ==============
+  #gallery {
+    .make-sm-column(12);
+
+    .gallery-display { 
+      position: relative;
+      .make-row();
+      margin: 0;
+      @arrow-width: 40px; // match padding to .glyphicon width
+      padding: 15px @arrow-width; 
+      @r: 15px;
+      border-radius: @r;
+
+      // base for gallery background color and gradient
+      @gallery-bg: desaturate(tint(@bleu-logo, 20%), 25%);
+      background-color: @gallery-bg;
+      #gradient.vertical-three-colors(@start-color: fade(@ciel, 0%); @mid-color: fade(@ciel, 25%); @color-stop: 60%; @end-color: fade(@ciel, 0%));
+
+      // bottom shadow
+      .box-shadow( 0 30px 30px -30px black);
+
+      .nav-arrow{
+        height: 100%;
+        position: absolute;
+        top: 0;
+        padding: 0;
+        &.left-arrow {
+          left: 0;
+          .border-left-radius(@r);
+          // arrow background
+          #gradient.horizontal(@start-color: fade(darken(@gallery-bg, 20%), 60%); @end-color: fade(darken(@gallery-bg, 30%), 0%); @start-percent: 0%; @end-percent: 33%);
+        }
+        &.right-arrow {
+          right: 0;
+          .border-right-radius(@r);
+          // arrow background
+          #gradient.horizontal(@start-color: fade(darken(@gallery-bg, 30%), 0%); @end-color: fade(darken(@gallery-bg, 20%), 60%); @start-percent: 66%; @end-percent: 100%);
+        }
+        .glyphicon {
+          color: lighten(@gallery-bg, 15%);
+          text-shadow:  0 -1px 0 tint(@gallery-bg, 50%),
+                        0 1px 0 shade(@gallery-bg, 50%);
+          width: @arrow-width;
+          font-size: 2em;
+          top: 50%;
+          &.glyphicon-chevron-left {
+            padding-left: 5px;
+          }
+          &.glyphicon-chevron-right {
+          }
+        }
+        &:hover {
+          background-color: fade(darken(@gallery-bg, 10%), 25%);
+          .glyphicon {
+            color: darken(@gallery-bg, 5%);
+            text-shadow:  0 1px 0 tint(@gallery-bg, 50%),
+                          0 -1px 0 shade(@gallery-bg, 50%);
+          }
+        }
+      }
+
+      h3, a {
+        color: fade(@ciel, 70%);
+        text-shadow:  0 -1px 0 desaturate(tint(@bleu-logo, 10%), 35%),
+                      0 1px 0 @ciel;
+      }
+      h3 {
+        font-size: 1.2em;
+      }
+      a {
+        .make-sm-column(3);
+        display: none;
+        &.start-gallery {
+          display: inline-block;
+        }
+        img {
+          background-color: pink;
+          width: 100%;
+          .img-responsive;
+          border: 2px solid tint(desaturate(tint(@bleu-logo, 20%), 25%), 50%);
+          border-radius: 5px;
+        }
+        &:hover h3, &:hover {
+          color: @ciel;
+          text-shadow:  0 -1px 0 desaturate(tint(@bleu-logo, 10%), 55%),
+                        0 1px 0 white;
+        }
+        &:hover img {
+          border: 2px solid tint(desaturate(tint(@bleu-logo, 20%), 25%), 70%);
+        }
+        &:hover {
+          #gradient.radial(@inner-color: fade(@ciel, 20%); @outer-color: fade(@ciel, 0%));
+        }
+      }
+    }
+
+    @media (min-width: @screen-sm-min) {
+      .gallery-display {
+        // padding: 15px 15px;
+    
+        a {
+          display: inline-block;
+        }
+      }
+    }
+  }
+// ----------- /end gallery -----------
+
+
+
 // ================= footer ============================
   .footer-container {
     .make-row();
@@ -679,36 +804,3 @@
   }
 
 // --------------- /end footer -------------------------
-
-
-
-// -----------------------------------
-// reference cheatsheet for LESS functions
-// -----------------------------------
-  // saturate(@color, 10%);                  
-    // return a color 10% points *more* saturated
-  // desaturate(@color, 10%);                
-    // return a color 10% points *less* saturated
-  // lighten(@color, 10%);                   
-    // return a color 10% points *lighter*
-  //darken(@color, 10%);                   
-    // return a color 10% points *darker*
-  //fadein(@color, 10%);                   
-    // return a color 10% points *less* transparent
-  //fadeout(@color, 10%);                  
-    // return a color 10% points *more* transparent
-  //fade(@color, 50%);                     
-    // return @color with 50% transparency
-  //spin(@color, 10);                      
-    // return a color with a 10 degree larger in hue
-  //mix(@color1, @color2, [@weight: 50%]); 
-    // return a mix of @color1 and @color2
-  //tint(@color, 10%);                     
-    // return a color mixed 10% with white
-  //shade(@color, 10%);                    
-    // return a color mixed 10% with black
-  //greyscale(@color);                     
-    // returns a grey, 100% desaturated color
-  //contrast(@color1, [@darkcolor: black], [@lightcolor: white], [@threshold: 43%]);  
-  //  // return @darkcolor if @color1 is > 43% luma
-    // otherwise return @lightcolor, see notes
