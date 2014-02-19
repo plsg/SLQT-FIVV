@@ -1,3 +1,29 @@
+// 
+// Mixins
+// -------------------------------------------------
+#gradient {
+	.five-color-gradient (@primary-color: @cuivre; 
+							@1st-color: @primary-color; @1st-stop: 0%; 
+							@2nd-color: tint(@primary-color, 30%); @2nd-stop: 10%; 
+							@3rd-color: @primary-color; @3rd-stop: 25%; 
+							@4th-color: shade(@primary-color, 25%); @4th-stop: 75%; 
+							@5th-color: shade(@primary-color, 50%); @5th-stop: 100%){
+		background: @primary-color;
+	background: -moz-linear-gradient(top,  @1st-color 0%, @2nd-color @2nd-stop, @3rd-color @3rd-stop, @4th-color @4th-stop, @5th-color @5th-stop);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@primary-color), color-stop(@2nd-stop,@2nd-color), color-stop(@3rd-stop,@3rd-color), color-stop(@4th-stop,@4th-color), color-stop(@5th-stop,@5th-color));
+	background: -webkit-linear-gradient(top,  @1st-color 0%,@2nd-color @2nd-stop,@3rd-color @3rd-stop,@4th-color @4th-stop,@5th-color @5th-stop);
+	background: -o-linear-gradient(top,  @1st-color 0%,@2nd-color @2nd-stop,@3rd-color @3rd-stop,@4th-color @4th-stop,@5th-color @5th-stop);
+	background: -ms-linear-gradient(top,  @1st-color 0%,@2nd-color @2nd-stop,@3rd-color @3rd-stop,@4th-color @4th-stop,@5th-color @5th-stop);
+	background: linear-gradient(to bottom,  @1st-color 0%,@2nd-color @2nd-stop,@3rd-color @3rd-stop,@4th-color @4th-stop,@5th-color @5th-stop);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
+	}
+}
+
+.text-shadow (@top-color: fade(black, 70%); @bottom-color: white;) {
+	text-shadow: 	0 -1px 0 @top-color, 
+					0 1px 0 @bottom-color;
+}
+
 //
 // Variables
 // --------------------------------------------------

@@ -564,48 +564,149 @@
     //mixins for agenda
     .agenda-label {
       border-top-left-radius: 7px;
-         border-top-right-radius: 7px;
+      border-top-right-radius: 7px;
+      #gradient.five-color-gradient();
     }
-    #agenda {
-      .make-sm-column(3);
-      h1 {
-        .agenda-label;
-        background-color: @nav-color;
-        font-family: @font-family-display;
-        font-style: italic;
-        font-size: 1em;
-        color: @ciel;
-        text-align: center;
-        padding: 5px;
-      }
-      h3 {
-        font-size: 1.25em;
-      }
-      // resize images to fit column width
-      img {
-        width: 50%;
-        max-width: 40%;
-        float: left;
-        padding-right: 10px;
+  // styles
+  #agenda {
+    .make-sm-column(12);
+    margin-bottom: 20px;
+          @media (min-width: @screen-sm-min) {
+            .make-sm-column(6);
+          }
 
-        //Small devices (tablets, 768px and up)
-        @media (min-width: @screen-sm-min) {
-          max-width: 100%;
-          display: block;
-          clear: both;
+          // Medium devices (desktops, 992px and up) 
+          @media (min-width: @screen-md-min) { 
+          }
+
+          // Large devices (large desktops, 1200px and up) 
+          @media (min-width: @screen-lg-min) { 
+            .make-sm-column(3);
+          }
+
+    h1 {
+      .agenda-label;
+      background-color: @nav-color;
+      font-family: @font-family-display;
+      font-style: italic;
+      font-size: 1em;
+      color: @ciel;
+      text-align: center;
+      padding: 5px;
+      margin-bottom: 0;
+    }
+    .agenda-container {
+      background-color: fade(tint(@cuivre, 35%), 10%);
+      padding: 15px;
+      border: 2px solid fade(tint(@cuivre, 30%), 50%);
+      border-top: none;
+      border-bottom-left-radius: 7px;
+      border-bottom-right-radius: 7px;
+
+      article {
+        .make-row();
+        margin: 30px 0 0;
+        &:first-of-type {
+          margin-top: 10px;
         }
 
-        // Medium devices (desktops, 992px and up) 
-        @media (min-width: @screen-md-min) { 
+        date {
+          .make-sm-column(2);
+          position: relative;
+          z-index: 10;
+          top: -13px;
+          left: -7px;
+          float: left;
+          text-align: center;
+          width: 65px;
+          margin: 0 2px -10px 0;
+          padding: 19px 0 12px;
+          line-height: 1.35em;
+          border-radius: 10px 0 3px 3px;
+          background: lighten(#E7D9C3, 0%);
+          box-shadow: 6px 5px 10px -7px rgba(0, 0, 0, 0.85),
+                      inset 0 0 20px fade(@cuivre, 50%),
+                      1px 1px 0 0 fade(@cuivre, 50%);
+          .text-shadow();
+          
+          font-family: @font-family-display;
+          font-style: italic;
+          font-weight: 700;
+          font-size: 1.2em;
+          color: tint(@cuivre, 20%);
+          span.year {
+            display: inline-block;
+            font-size: .75em;
+            letter-spacing: .4em;
+          }
+          &:after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 10px solid fade(@cuivre, 50%);
+            border-top: 10px solid transparent;
+            border-bottom: none;
+            top: 0;
+            right: -10px;
+          
+          }
+        }
+        h3 {
+          .make-sm-column(10);
+          font-size: 1.25em;
+          margin: 0;
+          position: relative;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          &:after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid fade(@cuivre, 12%);
+            top: -3px;
+          
+          }
 
         }
-
-        // Large devices (large desktops, 1200px and up) 
-        @media (min-width: @screen-lg-min) { 
+        p {
+          margin: 0;
+          //Small devices (tablets, 768px and up)
+          @media (min-width: @screen-sm-min) {
+            clear: both;
+          }
         }
+        // resize images to fit column width
+        img {
+          width: 50%;
+          max-width: 40%;
+          float: right;
+          margin-left: 10px;
+          // clear: left;
 
+          //Small devices (tablets, 768px and up)
+          @media (min-width: @screen-sm-min) {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            clear: both;
+          }
+
+          // Medium devices (desktops, 992px and up) 
+          @media (min-width: @screen-md-min) { 
+
+          }
+
+          // Large devices (large desktops, 1200px and up) 
+          @media (min-width: @screen-lg-min) { 
+          }
+
+        }
       }
     }
+  }
 // --------------- /end agenda --------------------------
 
 // =============== map ================
