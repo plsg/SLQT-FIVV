@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FIVV-SLQT &middot; navbar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap using LESS for customization -->
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/custom-bootstrap.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicon created with http://xiconeditor.com -->
+    <link rel="shortcut icon" href="ico/favicon.ico">
+
+
+    <style type="text/css">
+
+      html, 
+      body, 
+      div.container, 
+      div.bg-content {
+        background:none !important;
+      }
+      
+    </style>
+
+
+  </head>
+  <!-- ====================================== -->
+
+  <body>
+
+
+    <!-- ====== The Main wrapper div starts ============ -->
+          
+
+    <div class="container">
+      <div class="bg-content">
+
+            
+ 
+            <!-- ============ nav menu bar ==================== -->
+              <nav class="navbar navbar-default" role="navigation"> 
+                <!-- navbar toggle -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                    <!-- single button -->
+                    <li class="active"><a href="#">Accueil</a></li>
+                    <!-- dropdown button -->
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vo Vietnam <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Origines</a></li>
+                        <li><a href="#">Maître Môc</a></li>
+                        <li><a href="#">Ecole</a></li>
+                        <li><a href="#">Esprit</a></li>
+                        <!-- <li class="divider"></li> -->
+                      </ul>
+                    </li>
+                    <!-- /end dropdown button -->
+                    <!-- dropdown button -->
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">La pratique <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Thao</a></li>
+                        <li><a href="#">Combat</a></li>
+                        <li><a href="#">Auto-Défense</a></li>
+                        <li><a href="#">Armes</a></li>
+                        <li><a href="#">Acrobaties</a></li>
+                        <li><a href="#">Santé</a></li>
+                        <li><a href="#">Licorne</a></li>
+                      </ul>
+                    </li>
+                    <!-- /end dropdown button -->            
+                    <!-- dropdown button -->
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actualités <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <!-- single button -->
+                        <li><a href="#">Actualités Internationales</a></li>
+                        <!-- dropdown button -->
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actualités Nationales <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">France</a></li>
+                            <li><a href="#">Suisse</a></li>
+                            <li><a href="#">Burkina Faso</a></li>
+                            <li><a href="#">Autriche</a></li>
+                            <li><a href="#">Algérie</a></li>
+                          </ul>
+                        </li>
+                        <!-- /end dropdown button -->  
+                      </ul>
+                    </li>
+                    <!-- /end dropdown button -->
+                    <li><a href="#">Agenda</a></li>
+                    <li><a href="#">Clubs</a></li>
+                    <li><a href="#">Galerie</a></li>
+                    <li><a href="#">Liens</a></li>
+                    <li><a href="#">Forum</a></li>
+                  </ul>
+
+                </div><!-- /.navbar-collapse -->
+              </nav>
+            <!-- ============== /end nav menu bar ============= -->
+
+            <!-- =================== breadcrumb ============== -->      
+              <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+                <li><a class="showBanner" href="#" onclick="toggle_visibility('banner');">afficher la bannière</a></li>
+              </ol>
+            <!-- ============== /end breadcrumb ============== -->
+
+
+
+      </disv> 
+      <!-- /end bg-content row -->
+
+    </div> 
+    <!-- container -->
+    <!-- =============== end of container =========== -->
+
+
+	  <!-- ============== scripts ================= -->
+    <!-- plain javascript toggle display:none -->
+    <script>
+      function toggle_visibility(id) {
+         var e = document.getElementById(id);
+         if(e.style.display == 'block')
+            e.style.display = 'none';
+         else
+            e.style.display = 'block';
+      }
+    </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- ================ /end scripts =========== -->
+
+  </body>
+</html>

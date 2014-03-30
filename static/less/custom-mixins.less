@@ -1,0 +1,246 @@
+// 
+// Mixins
+// -------------------------------------------------
+
+
+// Clearfix
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+//    contenteditable attribute is included anywhere else in the document.
+//    Otherwise it causes space to appear at the top and bottom of elements
+//    that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// 
+// ------
+// 
+
+#gradient {
+	.five-color-gradient (@primary-color: @cuivre; 
+							@1st-color: @primary-color; @1st-stop: 0%; 
+							@2nd-color: tint(@primary-color, 30%); @2nd-stop: 10%; 
+							@3rd-color: @primary-color; @3rd-stop: 25%; 
+							@4th-color: shade(@primary-color, 25%); @4th-stop: 75%; 
+							@5th-color: shade(@primary-color, 50%); @5th-stop: 100%){
+		background: @primary-color;
+		background: -moz-linear-gradient(top,  @1st-color 0%, @2nd-color @2nd-stop, @3rd-color @3rd-stop, @4th-color @4th-stop, @5th-color @5th-stop);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@primary-color), color-stop(@2nd-stop,@2nd-color), color-stop(@3rd-stop,@3rd-color), color-stop(@4th-stop,@4th-color), color-stop(@5th-stop,@5th-color));
+		background: -webkit-linear-gradient(top,  @1st-color 0%,@2nd-color @2nd-stop,@3rd-color @3rd-stop,@4th-color @4th-stop,@5th-color @5th-stop);
+		background: -o-linear-gradient(top,  @1st-color 0%,@2nd-color @2nd-stop,@3rd-color @3rd-stop,@4th-color @4th-stop,@5th-color @5th-stop);
+		background: -ms-linear-gradient(top,  @1st-color 0%,@2nd-color @2nd-stop,@3rd-color @3rd-stop,@4th-color @4th-stop,@5th-color @5th-stop);
+		background: linear-gradient(to bottom,  @1st-color 0%,@2nd-color @2nd-stop,@3rd-color @3rd-stop,@4th-color @4th-stop,@5th-color @5th-stop);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
+	}
+	.vertical-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+	    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@start-color), color-stop(@color-stop, @mid-color), to(@end-color));
+	    background-image: -webkit-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+	    background-image: -moz-linear-gradient(top, @start-color, @mid-color @color-stop, @end-color);
+	    background-image: linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+	    background-repeat: no-repeat;
+	    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+	 }
+	// Horizontal gradient, from left to right
+	//
+	// Creates two color stops, start and end, by specifying a color and position for each color stop.
+	// Color stops are not available in IE9 and below.
+	.horizontal(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+	background-image: -webkit-gradient(linear, @start-percent top, @end-percent top, from(@start-color), to(@end-color)); // Safari 4+, Chrome 2+
+	background-image: -webkit-linear-gradient(left, color-stop(@start-color @start-percent), color-stop(@end-color @end-percent)); // Safari 5.1+, Chrome 10+
+	background-image: -moz-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // FF 3.6+
+	background-image:  linear-gradient(to right, @start-color @start-percent, @end-color @end-percent); // Standard, IE10
+	background-repeat: repeat-x;
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down
+	}
+	.radial(@inner-color: #555; @outer-color: #333) {
+	background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(@inner-color), to(@outer-color));
+	background-image: -webkit-radial-gradient(circle, @inner-color, @outer-color);
+	background-image: -moz-radial-gradient(circle, @inner-color, @outer-color);
+	background-image: radial-gradient(circle, @inner-color, @outer-color);
+	background-repeat: no-repeat;
+	}
+}
+
+.text-shadow (@top-color: fade(black, 70%); @bottom-color: white;) {
+	text-shadow: 	0 -1px 0 @top-color, 
+					0 1px 0 @bottom-color;
+}
+
+// Drop shadows
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+          box-shadow: @shadow;
+}
+
+// Single side border-radius
+.border-top-radius(@radius) {
+  border-top-right-radius: @radius;
+   border-top-left-radius: @radius;
+}
+.border-left-radius(@radius) {
+  border-bottom-left-radius: @radius;
+     border-top-left-radius: @radius;
+}
+.border-right-radius(@radius) {
+  border-bottom-right-radius: @radius;
+     border-top-right-radius: @radius;
+}
+
+// Button sizes
+// -------------------------
+.button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius) {
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  line-height: @line-height;
+  border-radius: @border-radius;
+}
+
+
+// Responsive utilities
+// -------------------------
+// More easily include all the states for responsive-utilities.less.
+.responsive-visibility() {
+  display: block !important;
+  tr& { display: table-row !important; }
+  th&,
+  td& { display: table-cell !important; }
+}
+
+.responsive-invisibility() {
+    &,
+  tr&,
+  th&,
+  td& { display: none !important; }
+}
+
+
+// Responsive image
+//
+// Keep images from scaling beyond the width of their parents.
+
+.img-responsive(@display: block;) {
+  display: @display;
+  max-width: 100%; // Part 1: Set a maximum relative to the parent
+  height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+}
+
+
+// 
+//  GRID
+// 
+// Creates a wrapper for a series of columns
+.make-row(@gutter: @grid-gutter-width) {
+  margin-left:  (@gutter / -2);
+  margin-right: (@gutter / -2);
+  .clearfix();
+}
+
+// Generate the small columns
+.make-sm-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  // Inner gutter via padding
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  // Calculate width based on number of columns available
+  @media (min-width: @screen-sm-min) {
+    float: left;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+
+
+// Media queries breakpoints
+// --------------------------------------------------
+
+// Extra small screen / phone
+// Note: Deprecated @screen-xs and @screen-phone as of v3.0.1
+@screen-xs:                  480px;
+@screen-xs-min:              @screen-xs;
+@screen-phone:               @screen-xs-min;
+
+// Small screen / tablet
+// Note: Deprecated @screen-sm and @screen-tablet as of v3.0.1
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+@screen-tablet:              @screen-sm-min;
+
+// Medium screen / desktop
+// Note: Deprecated @screen-md and @screen-desktop as of v3.0.1
+@screen-md:                  992px;
+@screen-md-min:              @screen-md;
+@screen-desktop:             @screen-md-min;
+
+// Large screen / wide desktop
+// Note: Deprecated @screen-lg and @screen-lg-desktop as of v3.0.1
+@screen-lg:                  1200px;
+@screen-lg-min:              @screen-lg;
+@screen-lg-desktop:          @screen-lg-min;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+
+
+//
+// Visibility utilities
+// 
+
+.visible-xs {
+  .responsive-invisibility();
+  @media (max-width: @screen-xs-max) {
+    .responsive-visibility();
+  }
+  &.visible-sm {
+    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+      .responsive-visibility();
+    }
+  }
+  &.visible-md {
+    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+      .responsive-visibility();
+    }
+  }
+  &.visible-lg {
+    @media (min-width: @screen-lg-min) {
+      .responsive-visibility();
+    }
+  }
+}
+
+.hidden-xs {
+  .responsive-visibility();
+  @media (max-width: @screen-xs-max) {
+    .responsive-invisibility();
+  }
+  &.hidden-sm {
+    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+      .responsive-invisibility();
+    }
+  }
+  &.hidden-md {
+    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+      .responsive-invisibility();
+    }
+  }
+  &.hidden-lg {
+    @media (min-width: @screen-lg-min) {
+      .responsive-invisibility();
+    }
+  }
+}

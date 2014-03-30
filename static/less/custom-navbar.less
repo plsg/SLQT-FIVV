@@ -1,0 +1,250 @@
+// =============== Navbar custom settings ==================================
+// other navbar settings can be found in custom-variables.less line 270
+
+  // background mixins
+    .nav-inner-shadow (@x: 0, @y: 0, @blur: 20px, @spread: 0, @alpha: 0.3) {
+      -webkit-box-shadow: inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
+      -moz-box-shadow:    inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
+      box-shadow:         inset @x @y @blur @spread rgba(255, 255, 255, @alpha);
+    }
+    .nav-inner-shadow-hover (@x: 0, @y: 0, @blur: 20px, @spread: 0, @nav-inner-shadow-color: fade(lighten(@nav-color, 50%), 30%)) {
+      -webkit-box-shadow: inset @x @y @blur @spread @nav-inner-shadow-color;
+      -moz-box-shadow:    inset @x @y @blur @spread @nav-inner-shadow-color;
+      box-shadow:         inset @x @y @blur @spread @nav-inner-shadow-color;
+    }
+    .nav-inner-shadow-active (@x: 0, @y: 0, @blur: 20px, @spread: 0, @nav-inner-shadow-color: fade(darken(@nav-color, 50%), 15%)) {
+      -webkit-box-shadow: inset @x @y @blur @spread @nav-inner-shadow-color;
+      -moz-box-shadow:    inset @x @y @blur @spread @nav-inner-shadow-color;
+      box-shadow:         inset @x @y @blur @spread @nav-inner-shadow-color;
+    }
+    .nav-radial(@inner-color: lighten(@nav-color, 5%); @outer-color: fade(shade(@nav-color, 5%), 60%)) {
+      background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(@inner-color), to(@outer-color));
+      background-image: -webkit-radial-gradient(circle, @inner-color, @outer-color);
+      background-image: -moz-radial-gradient(circle, @inner-color, @outer-color);
+      background-image: radial-gradient(circle, @inner-color, @outer-color);
+      background-repeat: no-repeat;
+    }
+    .nav-bg-gradient  (@start-color: lighten(@nav-color, 15%); 
+                      @mid-color1: @nav-color; @color-stop1: 55%; 
+                      @mid-color2: shade(@nav-color, 20%); @color-stop2: 57%; 
+                      @end-color: shade(@nav-color, 10%)) {
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@start-color), color-stop(@color-stop1, @mid-color1), color-stop(@color-stop2, @mid-color2), to(@end-color));
+      background-image: -webkit-linear-gradient(@start-color, @mid-color1 @color-stop1, @mid-color2 @color-stop2, @end-color);
+      background-image: -moz-linear-gradient(top, @start-color, @mid-color1 @color-stop1, @mid-color2 @color-stop2, @end-color);
+      background-image: linear-gradient(@start-color, @mid-color1 @color-stop1, @mid-color2 @color-stop2, @end-color);
+      background-repeat: no-repeat;
+      filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+    }
+
+  // navbar variables 
+
+    // Navbar
+    // -------------------------
+
+    // Basics of a navbar
+
+    @nav-padding:                      5px;
+    @navbar-height:                    5px;
+
+    @navbar-margin-bottom:             @line-height-computed;
+    @navbar-border-radius:             4px;
+    @navbar-padding-horizontal:        floor(@grid-gutter-width / 2);
+    @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
+
+    @navbar-default-color:             @nav-color;
+    @navbar-default-bg:                @nav-color;
+    @navbar-default-border:            darken(@navbar-default-bg, 6.5%);
+
+    // Navbar links
+    @navbar-default-link-color:                tint(@nav-color, 60%);
+    @navbar-default-link-hover-color:          tint(@nav-color, 90%);
+    @navbar-default-link-hover-bg:             darken(@navbar-default-bg, 5%);
+    @navbar-default-link-active-color:         tint(@nav-color, 75%);
+    @navbar-default-link-active-bg:            darken(@navbar-default-bg, 4.5%);
+    @navbar-default-link-disabled-color:       #ccc;
+    @navbar-default-link-disabled-bg:          transparent;
+
+    // Navbar brand label
+    @navbar-default-brand-color:               @navbar-default-link-color;
+    @navbar-default-brand-hover-color:         darken(@navbar-default-brand-color, 10%);
+    @navbar-default-brand-hover-bg:            transparent;
+
+    // Navbar toggle
+    @navbar-default-toggle-hover-bg:           @navbar-default-link-hover-bg;
+    @navbar-default-toggle-icon-bar-bg:        transparent;
+    @navbar-default-toggle-border-color:       transparent;
+
+
+  .dropdown-menu {
+    font-family:      @navbar-font-family;
+    font-style:       @navbar-font-style;
+    font-weight:      @navbar-font-weight;
+    font-size:        @navbar-font-size;
+    text-transform:   @navbar-text-transform;
+  }
+
+  // 
+  // the main horizontal menu bar
+  // 
+  .navbar-default {
+    background-color: @navbar-default-bg;
+    border-color:     @navbar-default-border;
+    font-family:      @navbar-font-family;
+    font-style:       @navbar-font-style;
+    font-weight:      @navbar-font-weight;
+    font-size:        @navbar-font-size;
+    text-transform:   @navbar-text-transform;
+
+    // colapsed menu glyph button
+    .navbar-toggle {
+      color: @navbar-default-link-color;
+      margin: auto;
+      width: 100%;
+      height: 30px;
+      border: none;
+
+      &:hover, 
+      &:focus {
+        // background-color:  darken(@navbar-default-link-hover-bg, 5%);
+        color: @navbar-default-link-hover-color;
+      }
+      &:active {
+        color: @navbar-default-link-active-color;
+      }
+    }
+
+    // apply mixin from above for navbar background
+    @media (min-width: @screen-sm-min) {
+      .nav-bg-gradient;
+      .nav-inner-shadow;
+    }
+
+
+    .navbar-nav {
+      // Caret should match text color on hover
+      > .dropdown > a:hover .caret,
+      > .dropdown > a:focus .caret {
+        border-top-color: @navbar-default-link-hover-color;
+        border-bottom-color: @navbar-default-link-hover-color;
+      }
+      > .dropdown > a .caret {
+        border-top-color: @navbar-default-link-color;
+        border-bottom-color: @navbar-default-link-color;
+      }
+      > .open > .dropdown-menu {
+        background-color: fade(@navbar-default-bg, 90%);
+        > li > a {
+          color: @navbar-default-link-active-color;
+          &:hover {
+            background-color: shade(@navbar-default-bg, 20%);
+            
+          }
+        }
+
+
+      }
+      > .open > a {
+        &,
+        &:focus,
+        &:active {
+          color: @navbar-default-link-active-color;
+          background-color: @navbar-default-link-hover-bg;
+        }
+        &:hover {
+          color: @navbar-default-link-active-color;
+          .nav-radial;
+          .nav-inner-shadow-hover;
+        }
+      }
+      > li > a {
+        color: @navbar-default-link-color;
+
+        // add padding between links @custom-variable.less @line-96
+          /* Small devices (tablets, 768px and up) */
+          @media (min-width: @screen-sm-min) {
+          padding-left:   @navbar-manual-spacing - .7;
+          padding-right:  @navbar-manual-spacing - .7;
+          }
+          
+          /* Medium devices (desktops, 992px and up) */
+          @media (min-width: @screen-md-min) { 
+          padding-left:   @navbar-manual-spacing; //100%
+          padding-right:  @navbar-manual-spacing; //100%
+          }
+
+          /* Large devices (large desktops, 1200px and up) */
+          @media (min-width: @screen-lg-min) { 
+          padding-left:   @navbar-manual-spacing + .5;
+          padding-right:  @navbar-manual-spacing + .5;
+          }
+
+        &:hover,
+        &:focus {
+          // background
+          color: @navbar-default-link-active-color;
+          background-color: @navbar-default-link-hover-bg;
+
+          // custom lighting effect on hover
+          @media (min-width: @screen-sm-min) {
+            .nav-radial;
+            .nav-inner-shadow-hover;
+          }
+
+        }
+        &:active {
+          // custom lighting effect on active
+          .nav-inner-shadow-active;
+        }
+      }
+      > .active > a {
+
+          color: @navbar-default-link-active-color;
+
+        &,
+        &:hover,
+        &:focus {
+          color: @navbar-default-link-active-color;
+
+          // custom lighting effect on focus
+          @media (min-width: @screen-sm-min) {
+            .nav-radial;
+          }
+          background: darken(@navbar-default-link-hover-bg, 5%);
+
+        }
+      }
+    }
+  }
+
+  .navbar{
+    min-height:@navbar-height; 
+    margin: 0px;
+  }
+  .navbar-nav > li > a {
+    padding-top:@nav-padding !important; 
+    padding-bottom:@nav-padding !important;
+  }
+
+  // for disabled links (ie: disabled menu item or any other link)
+  .disabled {
+    text-decoration: line-through;
+  }
+// -------------- /end Navbar custom settings ----------------------
+
+// ================= breadcrumb ===================== 
+  .breadcrumb {
+    font-size: .7em;
+    background: transparent;
+    font-family: @font-family-sans-serif;
+    a {
+      text-decoration: none;
+      color: @nav-color;
+    }
+    .showBanner {
+      color: orange;
+      .button-size(2px; 2px; 1em; 1em; 3px);
+      background-color: @gray-lighter;
+      border: 1px dotted fade(orange, 50%); 
+    }
+  }
+// -------------- /end breadcrumb ----------------- 
